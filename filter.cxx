@@ -9,14 +9,14 @@
 
 using namespace std;
 
-void filtern( const double* const f, const int N, const string noisy);
-void reading( const double* const f, const int N, const string noisy); // Unterfunktionen
-void ausgabe( const double* const f, const int N, const string noisy);
+void filtern( double*  f, const int N, const string noisy);
+void reading( double*  f, const int N, const string noisy); // Unterfunktionen
+void ausgabe( double*  f, const int N, const string noisy);
 
 int main(){
     int n;
     const int N= 237;
-    const double* const f=new double [n]; // neuer dynamischer Array mit unbekanntem n
+    double* f=new double [n]; // neuer dynamischer Array mit unbekanntem n
     const string noisy= "noisy.txt"; // string "noisy" wird gebildet mit dem Inhalt "noisy.txt"
     
     filtern(f,N,noisy);
@@ -29,7 +29,7 @@ int main(){
     
 }
 
-void filtern(const double* const f, const int N, const string noisy){ // (Noisy soll gelesen werden und) mit
+void filtern(double* f, const int N, const string noisy){ // (Noisy soll gelesen werden und) mit
     // g[i] = (f[i-1] + f[i] + f[i+1])/3 gefiltert werden   Funktion: f[N]=f[0]
     
     // für i=0: g[0]=f[N-1]+f[0]+f[1] ----> f[0]=g[0]
@@ -49,7 +49,7 @@ void filtern(const double* const f, const int N, const string noisy){ // (Noisy 
     // hier ist irgendwas falsch!!! " Read only variable is not assignable"
 }
 
-void reading (const double* const f, const int N, const string noisy){
+void reading (double* f, const int N, const string noisy){
     ifstream in(noisy.c_str()); // Lesen des strings "noisy"(in main gesagt, dass string noisy="noisy.txt."
                                 //ist , char Pointer, warum man den verwendet KP ;)
     
@@ -62,7 +62,7 @@ void reading (const double* const f, const int N, const string noisy){
     // hier ist auch was falsch, "invalid operands to binary expression('istream'aka'basic_ifstream<char>') and 'double'
     
 }
-void ausgabe( const double* const f, const int N, const string noisy){ // die gefilterte Funktion (gefiltert+noisy) soll ausgegeben werden
+void ausgabe(double* f, const int N, const string noisy){ // die gefilterte Funktion (gefiltert+noisy) soll ausgegeben werden
     ofstream out( "filtered.txt");
     
     for (int i=0; i<N; i++){
